@@ -1,0 +1,18 @@
+FORGE
+  remote: http://forge.puppetlabs.com
+  specs:
+    akumria/postgresql (1.1.1)
+      puppetlabs/stdlib (>= 2.3.1)
+    puppetlabs/stdlib (3.2.0)
+
+GIT
+  remote: git://github.com/stankevich/puppet-python.git
+  ref: master
+  sha: 2f91e3286888d147ab5fc1aca1e5a57b0b9f52f3
+  specs:
+    python (1.0.0)
+
+DEPENDENCIES
+  akumria/postgresql (>= 0)
+  python (>= 0)
+
