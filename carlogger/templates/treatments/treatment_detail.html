@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block page_content %}
+<h2>Treatment of date {{ treatement.date }} for car {{ treatment.car.get_name }}</h2>
+
+<p>Reason: {{ treatment.reason }}</p>
+<p>{{ treatment.description|linebreaks }}</p>
+<p>Part replaced: {{ treatment.parts_replaced }}</p>
+<p><a href="{{ treatment.car.get_treatments_absolute_url }}">&larr; Treatment List</a></p>
+{% endblock %}

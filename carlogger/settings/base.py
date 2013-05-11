@@ -138,7 +138,10 @@ THIRD_PARTY_APPS = (
     'gunicorn',
 )
 
-LOCAL_APPS = ()
+LOCAL_APPS = (
+    'carlogger.cars',
+    'carlogger.treatments',
+)
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 

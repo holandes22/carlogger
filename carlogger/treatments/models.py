@@ -39,3 +39,7 @@ class Treatment(models.Model):
     parts_replaced = models.CharField(max_length=300, default='None',
                                       help_text='Replaced parts, comma separated')
     kilometrage = models.IntegerField()
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('cars:treatments:detail', (), {'pk': self.car.pk, 'treatment_pk': self.pk})

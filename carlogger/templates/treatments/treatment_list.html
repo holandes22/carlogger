@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block page_content %}
+<h1>Treatments</h1>
+
+<ul>
+    {% for treatment in treatment_list %}
+    <li><a href="{{ treatment.get_absolute_url }}">{{ treatment.date }}</a></li>
+    {% empty %}
+    <li>No treatments yet</li>
+    {% endfor %}
+</ul>
+{% if treatment_list %}
+    <p><a href="{{ treatment_list.0.car.get_absolute_url }}">&larr; Car details</a></p>
+{%else %}    
+    <p><a href="{% url 'cars:list' %}">&larr; Car details</a></p>
+{% endif %}
+{% endblock %}

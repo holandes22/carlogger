@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block page_content %}
+<h2>Detail for car {{ car.get_name }}</h2>
+
+<p>Year: {{ car.year }}</p>
+<p>Gearbox type: {{ car.gearbox }}</p>
+<p><a href="{{ car.get_treatments_absolute_url }}">Treatments</a></p>
+<p><a href="{% url 'cars:list' %}">&larr; Car List</a></p>
+{% endblock %}

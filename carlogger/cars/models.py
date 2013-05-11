@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from carlogger.core.models import BaseManager
 
 YEAR_CHOICES = [(year, str(year)) for year in
-                xrange(1920, datetime.datetime.now().year)]
+                xrange(1920, datetime.datetime.now().year + 1)]
 
 
 class CarManager(BaseManager):
@@ -30,6 +30,9 @@ class Car(models.Model):
     year = models.IntegerField(choices=YEAR_CHOICES,
                                default=str(datetime.datetime.now().year))
 
+    def is_automatic(self):
+        return self.gearbox == 2
+
     def get_name(self):
         return '{} {} {}'.format(self.brand, self.model, self.year)
 
@@ -39,3 +42,8 @@ class Car(models.Model):
     @models.permalink
     def get_absolute_url(self):
         return ('cars:detail', (), {'pk': self.pk})
+
+    @models.permalink
+    def get_treatments_absolute_url(self):
+        return ('cars:treatments:list', (), {'pk': self.pk})
+
