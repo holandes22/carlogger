@@ -71,9 +71,6 @@ Vagrant.configure("2") do |config|
   #   puppet.manifest_file  = "base.pp"
   # end
 
-  # Upgrade Chef automatically
-  config.vm.provision :shell, :inline => "gem install --no-ri --no-rdoc chef"
-  
   # Puppet
   config.vm.provision :puppet do |puppet|
       puppet.manifests_path = "manifests"
