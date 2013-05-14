@@ -1,18 +1,18 @@
 {% extends 'base.html' %}
 
 {% block page_content %}
-<h1>Treatments</h1>
+
+<ul class="breadcrumb">
+	<li><a href="{% url 'cars:list' %}">Car list</a><span class="divider">/</span></li>
+	<li><a href="{% url 'cars:detail' pk=request.resolver_match.kwargs.pk %}">Car details</a><span class="divider">/</span></li>
+	<li class="active">Treatment list</a></li>
+</ul>
 
 <ul>
     {% for treatment in treatment_list %}
-    <li><a href="{{ treatment.get_absolute_url }}">{{ treatment.date }}</a></li>
+    <li><a href="{{ treatment.get_absolute_url }}">Treatment from <strong>{{ treatment.date }}</strong></a></li>
     {% empty %}
-    <li>No treatments yet</li>
+    <li>No treatment list</li>
     {% endfor %}
 </ul>
-{% if treatment_list %}
-    <p><a href="{{ treatment_list.0.car.get_absolute_url }}">&larr; Car details</a></p>
-{%else %}    
-    <p><a href="{% url 'cars:list' %}">&larr; Car details</a></p>
-{% endif %}
 {% endblock %}

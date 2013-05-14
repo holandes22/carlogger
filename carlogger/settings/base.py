@@ -1,5 +1,6 @@
 import os
 import sys
+from django.conf import global_settings as DEFAULT_SETTINGS
 
 here = lambda * x: os.path.join(os.path.abspath(os.path.dirname(__file__)), *x)
 PROJECT_ROOT = here("..")
@@ -21,6 +22,9 @@ DATABASES = {}
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = []
 
+TEMPLATE_CONTEXT_PROCESSORS = DEFAULT_SETTINGS.TEMPLATE_CONTEXT_PROCESSORS + (
+        'django.core.context_processors.request',
+)
 
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
@@ -139,6 +143,7 @@ THIRD_PARTY_APPS = (
 )
 
 LOCAL_APPS = (
+    'carlogger.core',
     'carlogger.cars',
     'carlogger.treatments',
 )

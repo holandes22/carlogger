@@ -5,6 +5,7 @@ from carlogger.cars.models import Car
 
 
 class Treatment(models.Model):
+
     BODYWORK_CAT = 1
     ELECTRIC_CAT = 2
     ENGINE_CAT = 3
