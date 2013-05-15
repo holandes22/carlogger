@@ -8,6 +8,8 @@
 	<li class="active">Treatment list</a></li>
 </ul>
 
+<legend>Treatment list</legend>
+
 <ul>
     {% for treatment in treatment_list %}
     <li><a href="{{ treatment.get_absolute_url }}">Treatment from <strong>{{ treatment.date }}</strong></a></li>
