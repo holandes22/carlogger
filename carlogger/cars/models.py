@@ -46,4 +46,3 @@ class Car(models.Model):
     @models.permalink
     def get_treatments_absolute_url(self):
         return ('cars:treatments:list', (), {'pk': self.pk})
-

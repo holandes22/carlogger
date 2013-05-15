@@ -10,4 +10,5 @@
 	<div>No cars</div>
 	{% endfor %}
 </ul>
+<a class="btn" data-toggle="modal" data-target="#editor-dialog" onclick="$('#editor-dialog').load('{% url 'cars:create' %}');">Create car</a>
 {% endblock %}
