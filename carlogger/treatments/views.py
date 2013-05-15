@@ -2,6 +2,8 @@ import logging
 from django.views.generic import ListView, DetailView
 from django.shortcuts import get_object_or_404
 
+from braces.views import LoginRequiredMixin
+
 from carlogger.treatments.models import Treatment
 from carlogger.cars.models import Car
 
@@ -18,11 +20,11 @@ class ByCarMixin(object):
         return get_object_or_404(Car, pk=self.kwargs['pk'])
 
 
-class TreatmentListView(ByCarMixin, ListView):
+class TreatmentListView(LoginRequiredMixin, ByCarMixin, ListView):
 
     model = Treatment
 
 
-class TreatmentDetailView(DetailView):
+class TreatmentDetailView(LoginRequiredMixin, DetailView):
 
     model = Treatment

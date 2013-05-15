@@ -1,5 +1,6 @@
 import os
 import sys
+from django.core.urlresolvers import reverse_lazy
 from django.conf import global_settings as DEFAULT_SETTINGS
 
 here = lambda * x: os.path.join(os.path.abspath(os.path.dirname(__file__)), *x)
@@ -25,6 +26,9 @@ ALLOWED_HOSTS = []
 TEMPLATE_CONTEXT_PROCESSORS = DEFAULT_SETTINGS.TEMPLATE_CONTEXT_PROCESSORS + (
         'django.core.context_processors.request',
 )
+
+LOGIN_URL = reverse_lazy('django.contrib.auth.views.login')
+LOGIN_REDIRECT_URL = reverse_lazy('home')
 
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')

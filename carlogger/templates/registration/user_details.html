@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block page_content %}
+
+<legend>User details</legend>
+
+<table class="table table-hover table-bordered table-condensed">
+	<tbody>
+        <tr>
+        	<td>
+        		<strong>{{ User name }}</strong>
+        	</td>
+        	<td>
+	       		{{ user.username }}
+        	</td>
+        </tr>
+        <tr>
+        	<td>
+        		<strong>{{ e-mail }}</strong>
+        	</td>
+        	<td>
+	       		{{ user.email }}
+        	</td>
+        </tr>
+	</tbody>	
+</table>
+
+{% if car.treatment_set.all %}
+	<p><a href="{{ car.get_treatments_absolute_url }}">Treatment history</a></p>
+{% else %}
+	<p>Car has no treatment history</p>
+{% endif %}
+{% endblock %}
