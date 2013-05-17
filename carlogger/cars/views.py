@@ -24,6 +24,11 @@ class CarDetailView(LoginRequiredMixin, SelectRelatedMixin, ByUserMixin, DetailV
     model = Car
     select_related = ['user', 'car']
 
+    def get_context_data(self, **kwargs):
+        context = super(CarDetailView, self).get_context_data(**kwargs)
+        context['treatments'] = self.get_object().treatment_set.all()
+        return context
+
 
 class CarCreateView(LoginRequiredMixin, CreateView):
 

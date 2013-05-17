@@ -1,10 +1,14 @@
 import logging
-from django.views.generic import ListView, DetailView
+
 from django.shortcuts import get_object_or_404
+from django.core.urlresolvers import reverse
+from django.views.generic import ListView, DetailView
+from django.views.generic import CreateView, UpdateView, DeleteView
 
 from braces.views import LoginRequiredMixin
 
 from carlogger.treatments.models import Treatment
+from carlogger.treatments.forms import TreatmentForm
 from carlogger.cars.models import Car
 
 
@@ -28,3 +32,24 @@ class TreatmentListView(LoginRequiredMixin, ByCarMixin, ListView):
 class TreatmentDetailView(LoginRequiredMixin, DetailView):
 
     model = Treatment
+
+
+class TreatmentCreateView(LoginRequiredMixin, ByCarMixin, CreateView):
+
+    form_class = TreatmentForm
+    template_name = 'editor.html'
+
+    def get_success_url(self):
+        return self.get_car_object().get_absolute_url()
+
+    def form_valid(self, form):
+        self.instance = form.instance
+        form.instance.user = self.request.user
+        form.instance.car = self.get_car_object()
+        return super(TreatmentCreateView, self).form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super(TreatmentCreateView, self).get_context_data(**kwargs)
+        context['submit_url'] = reverse('cars:treatments:create', kwargs=self.kwargs)
+        context['success_url'] = self.get_success_url()
+        return context

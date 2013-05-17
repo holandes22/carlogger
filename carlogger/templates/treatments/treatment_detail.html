@@ -5,7 +5,6 @@
 <ul class="breadcrumb">
 	<li><a href="{% url 'cars:list' %}">Car list</a><span class="divider">/</span></li>
 	<li><a href="{% url 'cars:detail' pk=request.resolver_match.kwargs.pk %}">Car details</a><span class="divider">/</span></li>
-	<li><a href="{% url 'cars:treatments:list' pk=request.resolver_match.kwargs.pk %}">Treatment list</a><span class="divider">/</span></li>
 	<li class="active">Treatment details</a></li>
 </ul>
 
