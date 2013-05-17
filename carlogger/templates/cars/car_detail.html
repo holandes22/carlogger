@@ -24,6 +24,9 @@
 	</tbody>	
 </table>
 
+<a class="btn btn-danger" data-toggle="modal" data-target="#warning-dialog" onclick="$('#warning-dialog').load('{% url 'cars:delete' pk=car.pk %}');">Delete</a>
+<a class="btn btn-inverse" data-toggle="modal" data-target="#editor-dialog" onclick="$('#editor-dialog').load('{% url 'cars:update' pk=car.pk %}');">Edit</a>
+
 {% if car.treatment_set.all %}
 	<p><a href="{{ car.get_treatments_absolute_url }}">Treatment history</a></p>
 {% else %}
