@@ -43,4 +43,8 @@ class Treatment(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-        return ('cars:treatments:detail', (), {'pk': self.car.pk, 'treatment_pk': self.pk})
+        return ('cars:treatments:update', (), {'pk': self.car.pk, 'treatment_pk': self.pk})
+
+    @models.permalink
+    def get_delete_absolute_url(self):
+        return ('cars:treatments:delete', (), {'pk': self.car.pk, 'treatment_pk': self.pk})

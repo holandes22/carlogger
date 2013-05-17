@@ -5,23 +5,26 @@
 <ul class="breadcrumb">
 	<li><a href="{% url 'cars:list' %}">Car list</a><span class="divider">/</span></li>
 	<li><a href="{% url 'cars:detail' pk=request.resolver_match.kwargs.pk %}">Car details</a><span class="divider">/</span></li>
-	<li class="active">Treatment details</a></li>
+	<li class="active">Edit Treatment details</a></li>
 </ul>
 
 <legend>Treatment details</legend>
 
-<table class="table table-hover table-bordered table-condensed">
-	<tbody>
-		{% for key, value in treatment|list_attributes %}	
-        <tr>
-        	<td>
-        		<strong>{{ key|capfirst }}</strong>
-        	</td>
-        	<td>
-	       		{{ value }}
-        	</td>
-        </tr>
-		{% endfor %}
-	</tbody>	
-</table>
+<form id="editor-form" action="{{ submit_url }}" method="POST">
+	{% if not form.is_valid %}
+		<div class='hide'>invalid_form</div>
+	{% endif %}
+	{% csrf_token %}
+	<table>
+	    {% for field in form %}
+    		<tr>
+				<td>{{ field.label_tag }}</td>
+				<td class="form-field" title="{{ field.errors.as_text }}">{{ field }}</td>
+    		</tr>
+	    {% endfor %}
+    </table>
+		<button type="submit" class="btn btn-primary">Save</button>   
+</form>
 {% endblock %}
+
+

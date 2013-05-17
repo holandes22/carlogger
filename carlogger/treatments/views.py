@@ -53,3 +53,36 @@ class TreatmentCreateView(LoginRequiredMixin, ByCarMixin, CreateView):
         context['submit_url'] = reverse('cars:treatments:create', kwargs=self.kwargs)
         context['success_url'] = self.get_success_url()
         return context
+
+class TreatmentUpdateView(LoginRequiredMixin, UpdateView):
+
+    form_class = TreatmentForm
+    template_name = 'treatments/treatment_detail.html'
+
+    def get_object(self):
+        return Treatment.objects.get(pk=self.kwargs['treatment_pk'])
+
+    def get_success_url(self):
+        return self.get_object().car.get_absolute_url()
+
+    def get_context_data(self, **kwargs):
+        context = super(TreatmentUpdateView, self).get_context_data(**kwargs)
+        context['submit_url'] = reverse('cars:treatments:update', kwargs=self.kwargs)
+        return context
+
+
+class TreatmentDeleteView(LoginRequiredMixin, DeleteView):
+
+    template_name = 'confirmation.html'
+
+    def get_object(self):
+        return Treatment.objects.get(pk=self.kwargs['treatment_pk'])
+
+    def get_success_url(self):
+        return reverse('cars:detail', kwargs={'pk': self.kwargs['pk']})
+
+    def get_context_data(self, **kwargs):
+        context = super(TreatmentDeleteView, self).get_context_data(**kwargs)
+        context['submit_url'] = reverse('cars:treatments:delete', kwargs=self.kwargs)
+        context['success_url'] = self.get_success_url()
+        return context

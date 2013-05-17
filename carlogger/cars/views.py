@@ -50,7 +50,7 @@ class CarCreateView(LoginRequiredMixin, CreateView):
         return context
 
 
-class CarDeleteView(DeleteView):
+class CarDeleteView(LoginRequiredMixin, DeleteView):
 
     template_name = 'confirmation.html'
 
@@ -67,7 +67,7 @@ class CarDeleteView(DeleteView):
         return context
 
 
-class CarUpdateView(UpdateView):
+class CarUpdateView(LoginRequiredMixin, UpdateView):
 
     form_class = CarForm
     template_name = 'editor.html'
