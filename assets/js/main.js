@@ -24,6 +24,11 @@ function loadDialog(){
 			$(dialog_selector).modal('hide');
 			window.location = success_url;
 		},
+		error: function(jqXHR, textStatus, errorThrown){
+	    	$(dialog_selector).modal('hide');
+    		$('#page_content').empty();
+    		$('#error_alert').show();
+    	}
 	})
 }
 
@@ -41,7 +46,8 @@ function loadDeleteConfirmDialog(){
 		},
 	    error: function(jqXHR, textStatus, errorThrown){
 	    	$(dialog_selector).modal('hide');
-    		$('#body-content').html(jqXHR.responseText);
+    		$('#page_content').empty();
+    		$('#error_alert').show();
     	}
 	})	
 }

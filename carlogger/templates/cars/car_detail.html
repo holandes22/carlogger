@@ -40,11 +40,11 @@
 	{% if treatments %}
 	    {% for treatment in treatments %}
 	    <div class="row-fluid">
-			<div class="span10">
+			<div class="span8">
 			    <div>
 			    	<a href="#"><i class="icon-chevron-right show-treatment-details"></i></a>
 			    	<a href="{{ treatment.get_absolute_url }}">Treatment from <strong>{{ treatment.date }}</strong></a>
-			    	<table class="table table-hover table-condensed" style="display:none">
+			    	<table class="table table-hover table-condensed hide">
 						<tbody>
 							{% for key, value in treatment|list_attributes %}	
 					        <tr>
@@ -60,8 +60,8 @@
 					</table>
 				</div>
 			</div>
-			<div class="span2">		
-				<button class="btn btn-danger" data-toggle="modal" data-target="#warning-dialog" onclick="$('#warning-dialog').load('{{ treatment.get_delete_absolute_url }}');" title="Delete"><i class="icon-remove"></i></button>
+			<div class="span4">		
+				<button class="btn btn-danger btn-mini" data-toggle="modal" data-target="#warning-dialog" onclick="$('#warning-dialog').load('{{ treatment.get_delete_absolute_url }}');" title="Delete"><i class="icon-remove"></i></button>
 			</div>
 		</div>
 	    {% endfor %}

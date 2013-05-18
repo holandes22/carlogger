@@ -3,12 +3,14 @@
 
 <legend>Car list</legend>
 
+{% if car_list %}
 <ul>
 	{% for car in car_list %}
-	<li><a href="{{ car.get_absolute_url }}">{{ car.get_name }}</a></li>
-	{% empty %}
-	<div>No cars</div>
+	<li><a href="{{ car.get_absolute_url }}">{{ car.get_name }}</a></li>	
 	{% endfor %}
 </ul>
-<a class="btn btn-primary" data-toggle="modal" data-target="#editor-dialog" onclick="$('#editor-dialog').load('{% url 'cars:create' %}');">Create car</a>
+{% else %}
+<h3>You currently have no cars in the list.</h3>
+{% endif %}
+<a class="btn btn-primary" data-toggle="modal" data-target="#editor-dialog" onclick="$('#editor-dialog').load('{% url 'cars:create' %}');">Add new car</a>
 {% endblock %}

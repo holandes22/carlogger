@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>{% block page_title %}Welcome to Carlogger{% endblock %}</title>
+    <title>{% block page_title %}Carlogger{% endblock %}</title>
     <link rel="stylesheet" href="{{ STATIC_URL}}libs/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="{{ STATIC_URL}}css/style.css"/>
 </head>
@@ -39,7 +39,12 @@
     <div class="container">
         <div class="modal hide" id="editor-dialog"></div>
         <div class="modal hide" id="warning-dialog"></div>
+        <div id="error_alert" class="alert hide">
+            {% include "error.html" %}
+        </div>
+        <div id="page_content">
         {% block page_content %}{% endblock page_content%}
+        </div>
     </div>
 
 <!-- ================================================== -->
