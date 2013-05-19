@@ -1,6 +1,6 @@
 from fabric.api import env, run, require
 from fabric.operations import prompt
-from common import virtualenv
+from common import virtualenv, _verify_aws_keys_are_set
 
 
 def _verify_migration_app_is_set():
@@ -37,6 +37,7 @@ def django_shell():
 
 
 def collectstatic():
+    _verify_aws_keys_are_set()
     require('aws_access_key_id', 'aws_secret_access_key')
     with virtualenv():
         run('python manage.py collectstatic --settings={}'.format(env.settings_file))
