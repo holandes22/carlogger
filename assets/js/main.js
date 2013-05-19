@@ -52,10 +52,19 @@ function loadDeleteConfirmDialog(){
 	})	
 }
 
-$(document).ready(function () {
+function showTreatmentDetails(selector){
+	$(selector).prev().toggleClass('icon-chevron-right').toggleClass('icon-chevron-down');
+	$(selector).next().toggle();	
+}
 
-	$("i.show-treatment-details").on('click', null, function(e){
-		$(this).toggleClass('icon-chevron-right').toggleClass('icon-chevron-down');
-		$(this).parent().next().next().toggle();
+function showAllTreatmentDetails(){
+	$("a.show-treatment-details").each(function(){
+		showTreatmentDetails();
+	})
+}
+
+$(document).ready(function () {
+	$("a.show-treatment-details").on('click', null, function(e){
+		showTreatmentDetails(this);
 	})
 })
